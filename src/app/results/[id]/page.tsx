@@ -1,9 +1,10 @@
 "use client";
-
+/* eslint-disable react-hooks/set-state-in-effect */
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { AuditResult } from "@/types";
 import { TOOL_LABELS } from "@/lib/pricingData";
+import Link from "next/link";
 
 const severityColors = {
   high: "bg-red-50 border-red-200",
@@ -128,9 +129,9 @@ const [role, setRole] = useState("");
       <div className="min-h-screen flex items-center justify-center bg-slate-50">
         <div className="text-center space-y-3">
           <p className="text-gray-700 font-medium">Audit not found</p>
-          <a href="/" className="text-blue-600 text-sm underline">
+          <Link href="/" className="text-blue-600 text-sm underline">
             Run a new audit →
-          </a>
+          </Link>
         </div>
       </div>
     );
@@ -144,9 +145,9 @@ const [role, setRole] = useState("");
 
         {/* Header */}
         <div className="text-center">
-          <a href="/" className="text-sm text-blue-600 hover:underline">
+          <Link href="/" className="text-sm text-blue-600 hover:underline">
             ← Run another audit
-          </a>
+          </Link>
         </div>
 
         {/* Hero savings card */}
@@ -155,10 +156,10 @@ const [role, setRole] = useState("");
             <>
               <div className="text-4xl mb-2">🎉</div>
               <h1 className="text-2xl font-bold text-gray-900 mb-1">
-                You're spending well
+                You&apos;re spending well
               </h1>
               <p className="text-gray-500 text-sm">
-                Your AI stack looks optimized. We'll notify you when better options appear.
+                Your AI stack looks optimized. We&apos;ll notify you when better options appear.
               </p>
             </>
           ) : (
@@ -205,13 +206,13 @@ const [role, setRole] = useState("");
                   Credex sells discounted AI credits from companies that overforecast —
                   Cursor, Claude, ChatGPT Enterprise. Book a free 20-min call.
                 </p>
-                <a
+                <Link
                   href="https://credex.rocks"
                   target="_blank"
                   className="inline-block bg-white text-blue-600 font-semibold px-5 py-2 rounded-lg text-sm hover:bg-blue-50 transition"
                 >
                   Book free consultation →
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -264,7 +265,7 @@ const [role, setRole] = useState("");
               <div className="text-3xl">📬</div>
               <p className="font-semibold text-gray-900">Got it!</p>
               <p className="text-sm text-gray-500">
-                We'll send your report and notify you when new optimizations apply.
+                We&apos;ll send your report and notify you when new optimizations apply.
               </p>
             </div>
           ) : (
@@ -330,12 +331,12 @@ const [role, setRole] = useState("");
           >
             {copied ? "✅ Copied!" : "📋 Copy shareable link"}
           </button>
-          <a
+          <Link
             href="/"
             className="flex-1 text-center bg-slate-800 text-white font-medium py-2.5 rounded-xl text-sm hover:bg-slate-900 transition"
           >
             ← Audit another stack
-          </a>
+          </Link>
         </div>
       </div>
     </main>

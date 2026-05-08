@@ -13,8 +13,8 @@ export default function Home() {
             Are you overpaying for AI tools?
           </h1>
           <p className="text-lg text-gray-600 max-w-lg mx-auto">
-            Get a free 60-second audit of your team's AI spend. See exactly
-            where you're wasting money and what to do about it.
+            Get a free 60-second audit of your team&apos;s AI spend. See exactly
+            where you&apos;re wasting money and what to do about it.
           </p>
         </div>
 
