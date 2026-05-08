@@ -1,9 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { runAudit } from "@/lib/auditEngine";
 import { FormData } from "@/types";
-
-// In-memory store for now (we add Supabase on Day 5)
-const auditStore = new Map<string, object>();
+import { supabaseAdmin } from "@/lib/supabase";
 
 export async function POST(req: NextRequest) {
   try {
@@ -14,9 +12,21 @@ export async function POST(req: NextRequest) {
     }
 
     const audit = runAudit(formData);
-    auditStore.set(audit.id, audit);
 
-    return NextResponse.json({ id: audit.id, audit });
+    // Persist to Supabase
+    const { error } = await supabaseAdmin
+      .from("audits")
+      .insert({ id: audit.id, data: audit });
+
+    if (error) console.error("Supabase insert error:", error);
+
+    const response = NextResponse.json({ id: audit.id, audit });
+    response.cookies.set(`audit_${audit.id}`, JSON.stringify(audit), {
+      maxAge: 60 * 60 * 24,
+      httpOnly: false,
+    });
+
+    return response;
   } catch (err) {
     console.error(err);
     return NextResponse.json({ error: "Audit failed" }, { status: 500 });
@@ -27,8 +37,16 @@ export async function GET(req: NextRequest) {
   const id = req.nextUrl.searchParams.get("id");
   if (!id) return NextResponse.json({ error: "No ID" }, { status: 400 });
 
-  const audit = auditStore.get(id);
-  if (!audit) return NextResponse.json({ error: "Not found" }, { status: 404 });
+  // Fetch from Supabase
+  const { data, error } = await supabaseAdmin
+    .from("audits")
+    .select("data")
+    .eq("id", id)
+    .single();
 
-  return NextResponse.json(audit);
+  if (error || !data) {
+    return NextResponse.json({ error: "Not found" }, { status: 404 });
+  }
+
+  return NextResponse.json(data.data);
 }
