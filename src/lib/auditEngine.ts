@@ -1,6 +1,13 @@
 import { FormData, ToolAuditResult, AuditResult, ToolName } from "@/types";
 import { PRICING } from "./pricingData";
-import { v4 as uuidv4 } from "uuid";
+
+function generateId(): string {
+  return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, (c) => {
+    const r = (Math.random() * 16) | 0;
+    const v = c === "x" ? r : (r & 0x3) | 0x8;
+    return v.toString(16);
+  });
+}
 
 // Core audit logic per tool
 function auditTool(
@@ -232,12 +239,19 @@ export function runAudit(formData: FormData): AuditResult {
     )
   );
 
-  const totalMonthlySavings = results.reduce((sum, r) => sum + r.monthlySavings, 0);
+  const totalMonthlySavings = Math.round(
+    results.reduce((sum, r) => sum + r.monthlySavings, 0)
+  );
 
   return {
-    id: uuidv4(),
+    id: generateId(),
     formData,
-    results,
+    results: results.map((r) => ({
+      ...r,
+      monthlySavings: Math.round(r.monthlySavings),
+      estimatedCost: Math.round(r.estimatedCost),
+      currentSpend: Math.round(r.currentSpend),
+    })),
     totalMonthlySavings,
     totalAnnualSavings: totalMonthlySavings * 12,
     createdAt: new Date().toISOString(),
