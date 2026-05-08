@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     title: "AI Spend Audit — Are you overpaying for AI tools?",
     description:
       "Free audit of your AI tool spend. Identify overspending in 60 seconds.",
-    url: "https://your-deployed-url.vercel.app",
+     url: "https://ai-spend-audit.vercel.app",
     siteName: "AI Spend Audit",
     type: "website",
   },
