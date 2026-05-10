@@ -125,11 +125,10 @@ export default function SpendForm() {
             <button
               key={tool}
               onClick={() => toggleTool(tool)}
-              className={`px-3 py-2 rounded-lg text-sm font-medium border transition-all ${
-                selectedTools.includes(tool)
+              className={`px-3 py-2 rounded-lg text-sm font-medium border transition-all ${selectedTools.includes(tool)
                   ? "bg-blue-600 text-white border-blue-600"
                   : "bg-white text-gray-700 border-gray-300 hover:border-blue-400"
-              }`}
+                }`}
             >
               {TOOL_LABELS[tool]}
             </button>
@@ -197,6 +196,7 @@ export default function SpendForm() {
       {/* Submit */}
       <button
         onClick={handleSubmit}
+        aria-label="Submit audit form"
         disabled={selectedTools.length === 0 || loading}
         className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-gray-300 text-white font-semibold py-3 rounded-xl transition-all text-base"
       >

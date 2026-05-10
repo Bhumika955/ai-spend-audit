@@ -9,7 +9,7 @@ export default function Home() {
           <div className="inline-block bg-blue-100 text-blue-700 text-xs font-semibold px-3 py-1 rounded-full mb-2">
             Free · No signup required
           </div>
-          <h1 className="text-4xl font-bold text-gray-900 leading-tight">
+          <h1 className="text-4xl font-bold text-gray-900 leading-tight" aria-label="AI Spend Audit Tool">
             Are you overpaying for AI tools?
           </h1>
           <p className="text-lg text-gray-600 max-w-lg mx-auto">
