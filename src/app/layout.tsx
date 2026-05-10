@@ -5,7 +5,7 @@ import "./globals.css";
 const geist = Geist({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "AI Spend Audit — Are you overpaying for AI tools?",
+  title: "AI Spend Audit — Free Tool to Cut AI Tool Costs",
   description:
     "Free 60-second audit of your team's AI spend. See exactly where you're wasting money and what to do about it.",
   openGraph: {
