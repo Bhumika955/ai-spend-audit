@@ -13,8 +13,10 @@ A free tool that audits your team's AI tool spending in 60 seconds — built as 
 > 2. Results page showing savings breakdown
 > 3. Email capture / Credex CTA
 >
-> Or add a Loom recording link: [30-second demo](https://loom.com/YOUR_LINK)
-
+ ![alt text](image.png)
+ ![alt text](image-1.png)
+ ![alt text](image-3.png)
+ ![alt text](image-2.png)
 ---
 
 ## Quick start
